@@ -325,3 +325,31 @@ ORDER BY
 ```
 
 These SQL views are just starting points for your Data Marts. Depending on your specific business requirements, you may need to create additional views or customize the existing ones to provide the necessary data for your reports and analyses. Additionally, you can use these views as data sources for your BI tools or reporting applications to visualize and interact with the data.
+
+
+### Create or Copy Table: DM_monthlysalestrends
+This SQL operation focuses on the creation or duplication of a table named `DM_monthlysalestrends`. The objective is to either establish a new table with this name or replicate the data structure and content of an existing table known as `monthlysalestrends`. This process is designed to maintain data consistency and structure while offering flexibility in database management tasks.
+
+**SQL Code:**
+
+```sql
+-- Create or Copy Table: DM_monthlysalestrends
+-- Description: Create a new table or copy data into an existing table named DM_monthlysalestrends from the public.monthlysalestrends table.
+-- This SQL statement ensures that the new table matches the structure and data of the source table.
+CREATE TABLE IF NOT EXISTS public.DM_monthlysalestrends AS
+SELECT * FROM public.monthlysalestrends;
+```
+
+**Usage Guidelines:**
+
+- **Table Creation:** If the table `DM_monthlysalestrends` does not already exist, this SQL code will create it. It precisely mirrors the structure and content of the source table `public.monthlysalestrends`.
+
+- **Table Duplication:** If the table `DM_monthlysalestrends` already exists, this SQL code will not recreate it. Instead, it will populate the existing table with data from `public.monthlysalestrends`. This is useful for maintaining backups or derived tables for analytical purposes.
+
+- **Schema and Database:** The code assumes that both the source table `public.monthlysalestrends` and the destination table `DM_monthlysalestrends` reside in the same database and schema ("public"). Ensure that the appropriate database context is set before executing the code.
+
+- **Data Consistency:** This operation preserves data integrity by copying all rows and columns from the source table. Any changes in the source table will be reflected in the destination table upon execution.
+
+- **Error Handling:** The use of `CREATE TABLE IF NOT EXISTS` ensures that the code will not produce errors if the destination table already exists.
+
+**Note:** Be cautious when using this code in production environments, as it can potentially overwrite or duplicate data. Always verify the database context and table names before executing the SQL statement.
