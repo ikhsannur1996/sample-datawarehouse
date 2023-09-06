@@ -1,3 +1,14 @@
+# Enterprise Data Warehouse (EDW)
+
+Enterprise Data Warehouses (EDWs) and Data Marts are foundational components of modern data management and analytics, and their implementation for a book store or any business is indeed a complex and strategic undertaking. This section will provide some context about why building an EDW and Data Mart for a book store is a significant endeavor that requires meticulous planning and design.
+
+**Enterprise Data Warehouse (EDW) - Star Schema (Tested in Lab):**
+In this section, we delve into the concept of an Enterprise Data Warehouse (EDW) designed using a star schema, a well-established and tested approach for organizing data in a data warehouse. The star schema consists of a central fact table surrounded by dimension tables, offering simplicity, query performance, and ease of use. This section provides insights into the benefits, practical implementation, and use cases of a star schema within an EDW, backed by actual testing and experimentation.
+
+**Enterprise Data Warehouse (EDW) - Snowflake Schema (Untested in Lab):**
+In this section, we explore the concept of an Enterprise Data Warehouse (EDW) designed using a snowflake schema, although it has not yet undergone testing by the author. The snowflake schema is characterized by its more normalized structure, potentially reducing data redundancy and offering advantages in terms of data integrity and adaptability to changes. This section examines the theoretical benefits and considerations of using a snowflake schema within an EDW, while acknowledging that practical testing results are pending.
+
+
 ## Enterprise Data Warehouse (EDW) - Star Schema (Tested in Lab)
 
 Creating a full-fledged Enterprise Data Warehouse (EDW) and Data Mart for a book store is a complex task that typically involves a significant amount of planning and design. In this text-based format, I can provide you with a simplified example of an Entity-Relationship Diagram (ERD) for a Data Warehouse and Data Mart in a book store scenario, along with SQL code and sample data for one fact table and three dimension tables.
@@ -377,4 +388,417 @@ SELECT * FROM public.monthlysalestrends;
 **Note:** Be cautious when using this code in production environments, as it can potentially overwrite or duplicate data. Always verify the database context and table names before executing the SQL statement.
 
 
-## Enterprise Data Warehouse (EDW) - Snowflake Schema
+## Enterprise Data Warehouse (EDW) - Snowflake Schema (Untested in Lab)
+
+Creating a full-fledged Enterprise Data Warehouse (EDW) and Data Mart with a snowflake schema for a book store is a complex task that typically involves a significant amount of planning, design, and development. In this text-based format, I can provide a simplified example of an Entity-Relationship Diagram (ERD) for a Data Warehouse and Data Mart using a snowflake schema, along with sample SQL code for creating tables and some sample data for one fact table and three dimension tables.
+
+Using a snowflake schema instead of a star schema for a data warehouse in a book store context might be a valid choice depending on certain factors and requirements. Here are some reasons why you might consider using a snowflake schema:
+
+1. **Data Normalization**: Snowflake schemas are typically more normalized compared to star schemas. If your book store's data contains a lot of redundancy and you want to reduce data storage requirements, a snowflake schema can help by eliminating some duplicate data. This can be especially useful if you have limited storage resources.
+
+2. **Data Integrity**: Snowflake schemas can provide better data integrity by reducing the chances of anomalies. With more normalized data, you can enforce data consistency rules more effectively. This is crucial if maintaining data accuracy is a top priority, such as for financial data or regulatory compliance.
+
+3. **Data Changes and Updates**: If your data source systems frequently change or update their data structures, a snowflake schema can be more adaptable. Since it's normalized, changes in one dimension table are less likely to have a cascading effect on other parts of the schema, reducing the maintenance effort.
+
+4. **Complex Hierarchies**: If your business processes involve complex hierarchies within dimension tables (e.g., hierarchical product categories or organizational structures), a snowflake schema may help represent these hierarchies more efficiently by breaking them into separate tables.
+
+5. **Security and Access Control**: Snowflake schemas can provide finer-grained control over data access. You can grant different permissions on individual tables or views within the schema, which can be important for enforcing security policies and data privacy regulations.
+
+6. **Resource Constraints**: If your data warehouse platform has resource constraints, such as limited memory or processing power, a snowflake schema may consume fewer resources during query execution due to its normalized structure. This can help with query performance on resource-constrained systems.
+
+However, it's important to consider the trade-offs when using a snowflake schema:
+
+1. **Query Performance**: Snowflake schemas typically involve more joins, which can lead to slower query performance compared to star schemas, especially for complex analytical queries. You may need to invest in query optimization techniques to mitigate this.
+
+2. **Query Complexity**: Snowflake schemas can make SQL queries more complex due to the need for additional joins across multiple tables. This complexity can affect query development and maintenance.
+
+3. **Tool Compatibility**: Some Business Intelligence (BI) tools and reporting tools are optimized for star schemas. Using a snowflake schema may require additional effort to integrate these tools effectively.
+
+4. **End-User Understanding**: Snowflake schemas can be more challenging for end-users and business analysts to understand compared to star schemas, which are more intuitive and user-friendly.
+
+In conclusion, the decision to use a snowflake schema or a star schema should be based on a careful analysis of your specific business requirements, data characteristics, and resource constraints. Both schema designs have their advantages and trade-offs, and the choice should align with your organization's goals for data warehousing and analytics.
+
+**Entity-Relationship Diagram (ERD):**
+
+![drawSQL-sql-export](https://github.com/ikhsannur1996/sample-datawarehouse/assets/32507742/3d951b0a-a228-477f-b2d4-f23c4884f094)
+
+
+Here's a simplified ERD for the Data Warehouse and Data Mart using a snowflake schema:
+
+1. Fact Table:
+   - `SalesFact` (Fact)
+     - sales_id (Primary Key)
+     - book_id (Foreign Key)
+     - customer_id (Foreign Key)
+     - date_id (Foreign Key)
+     - quantity_sold
+     - total_sales_amount
+
+2. Dimension Tables:
+   - `BookDim` (Dimension)
+     - book_id (Primary Key)
+     - book_title
+     - author_id (Foreign Key)
+     - genre_id (Foreign Key)
+     - publication_year
+     - publisher_id (Foreign Key)
+
+   - `AuthorDim` (Dimension)
+     - author_id (Primary Key)
+     - author_name
+
+   - `GenreDim` (Dimension)
+     - genre_id (Primary Key)
+     - genre_name
+
+   - `PublisherDim` (Dimension)
+     - publisher_id (Primary Key)
+     - publisher_name
+
+3. `CustomerDim` (Dimension)
+     - customer_id (Primary Key)
+     - customer_name
+     - email
+     - phone
+     - address
+
+4. `DateDim` (Dimension)
+     - date_id (Primary Key)
+     - date
+     - day_of_week
+     - month
+     - quarter
+     - year
+
+**SQL Code:**
+
+Below is sample SQL code to create the tables for the above snowflake schema:
+
+```sql
+-- Create Dimension Tables
+CREATE TABLE AuthorDim (
+    author_id INT PRIMARY KEY,
+    author_name VARCHAR(255)
+);
+
+CREATE TABLE GenreDim (
+    genre_id INT PRIMARY KEY,
+    genre_name VARCHAR(255)
+);
+
+CREATE TABLE PublisherDim (
+    publisher_id INT PRIMARY KEY,
+    publisher_name VARCHAR(255)
+);
+
+-- Create BookDim table with foreign keys to AuthorDim, GenreDim, and PublisherDim
+CREATE TABLE BookDim (
+    book_id INT PRIMARY KEY,
+    book_title VARCHAR(255),
+    author_id INT,
+    genre_id INT,
+    publication_year INT,
+    publisher_id INT,
+    FOREIGN KEY (author_id) REFERENCES AuthorDim(author_id),
+    FOREIGN KEY (genre_id) REFERENCES GenreDim(genre_id),
+    FOREIGN KEY (publisher_id) REFERENCES PublisherDim(publisher_id)
+);
+
+CREATE TABLE CustomerDim (
+    customer_id INT PRIMARY KEY,
+    customer_name VARCHAR(255),
+    email VARCHAR(255),
+    phone VARCHAR(20),
+    address VARCHAR(255)
+);
+
+CREATE TABLE DateDim (
+    date_id INT PRIMARY KEY,
+    date DATE,
+    day_of_week VARCHAR(10),
+    month VARCHAR(10),
+    quarter VARCHAR(10),
+    year INT
+);
+
+-- Create Fact Table with foreign keys to Dimension Tables
+CREATE TABLE SalesFact (
+    sales_id INT PRIMARY KEY,
+    book_id INT,
+    customer_id INT,
+    date_id INT,
+    quantity_sold INT,
+    total_sales_amount DECIMAL(10, 2),
+    FOREIGN KEY (book_id) REFERENCES BookDim(book_id),
+    FOREIGN KEY (customer_id) REFERENCES CustomerDim(customer_id),
+    FOREIGN KEY (date_id) REFERENCES DateDim(date_id)
+);
+```
+
+**Sample Data:**
+
+Below is some sample data for one fact table record and three dimension tables:
+
+**AuthorDim Table Sample Data:**
+
+| author_id | author_name       |
+| --------- | ----------------- |
+| 1         | F. Scott Fitzgerald |
+| 2         | Harper Lee        |
+| 3         | George Orwell     |
+
+**GenreDim Table Sample Data:**
+
+| genre_id | genre_name |
+| -------- | ---------- |
+| 1        | Fiction    |
+| 2        | Mystery    |
+| 3        | Science Fiction |
+
+**PublisherDim Table Sample Data:**
+
+| publisher_id | publisher_name |
+| ----------- | -------------- |
+| 1           | Scribner       |
+| 2           | HarperCollins  |
+| 3           | Penguin Books  |
+
+**Sample Data for one BookDim Record:**
+
+| book_id | book_title        | author_id | genre_id | publication_year | publisher_id |
+| ------- | ----------------- | --------- | -------- | ----------------- | ------------ |
+| 1       | The Great Gatsby  | 1         | 1        | 1925            | 1            |
+
+**CustomerDim Table Sample Data:**
+
+| customer_id | customer_name    | email                  | phone        | address                   |
+| ----------- | ---------------- | ---------------------- | ------------ | -------------------------- |
+| 101         | John Doe         | john.doe@example.com   | 123-456-7890 | 123 Main St, Anytown, USA |
+| 102         | Jane Smith       | jane
+
+.smith@example.com | 987-654-3210 | 456 Elm St, Othertown, USA |
+| 103         | Bob Johnson      | bob.j@example.com      | 555-123-4567 | 789 Oak St, Anothercity, USA |
+
+**DateDim Table Sample Data:**
+
+| date_id | date       | day_of_week | month      | quarter | year |
+| ------- | ---------- | ----------- | ---------- | ------- | ---- |
+| 1       | 2023-09-01 | Thursday    | September | Q3      | 2023 |
+| 2       | 2023-09-02 | Friday      | September | Q3      | 2023 |
+| 3       | 2023-09-03 | Saturday    | September | Q3      | 2023 |
+
+**Sample Data for one SalesFact Record:**
+
+| sales_id | book_id | customer_id | date_id | quantity_sold | total_sales_amount |
+| -------- | ------- | ----------- | ------- | ------------- | ------------------ |
+| 1        | 1       | 101         | 1       | 2             | 24.99              |
+
+Please note that this is a simplified example with only a few records in each table. In a real-world scenario, you would populate these tables with a much larger dataset based on your actual business data.
+
+**Sample Data for Dimension Tables:**
+
+```sql
+-- Insert data into AuthorDim
+INSERT INTO AuthorDim (author_id, author_name)
+VALUES
+    (1, 'F. Scott Fitzgerald'),
+    (2, 'Harper Lee'),
+    (3, 'George Orwell');
+
+-- Insert data into GenreDim
+INSERT INTO GenreDim (genre_id, genre_name)
+VALUES
+    (1, 'Fiction'),
+    (2, 'Mystery'),
+    (3, 'Science Fiction');
+
+-- Insert data into PublisherDim
+INSERT INTO PublisherDim (publisher_id, publisher_name)
+VALUES
+    (1, 'Scribner'),
+    (2, 'HarperCollins'),
+    (3, 'Penguin Books');
+
+-- Insert data into BookDim
+INSERT INTO BookDim (book_id, book_title, author_id, genre_id, publication_year, publisher_id)
+VALUES
+    (1, 'The Great Gatsby', 1, 1, 1925, 1),
+    (2, 'To Kill a Mockingbird', 2, 1, 1960, 2),
+    (3, '1984', 3, 3, 1949, 3);
+
+-- Insert data into CustomerDim
+INSERT INTO CustomerDim (customer_id, customer_name, email, phone, address)
+VALUES
+    (101, 'John Doe', 'john.doe@example.com', '123-456-7890', '123 Main St, Anytown, USA'),
+    (102, 'Jane Smith', 'jane.smith@example.com', '987-654-3210', '456 Elm St, Othertown, USA'),
+    (103, 'Bob Johnson', 'bob.j@example.com', '555-123-4567', '789 Oak St, Anothercity, USA');
+
+-- Insert data into DateDim
+INSERT INTO DateDim (date_id, date, day_of_week, month, quarter, year)
+VALUES
+    (1, '2023-09-01', 'Thursday', 'September', 'Q3', 2023),
+    (2, '2023-09-02', 'Friday', 'September', 'Q3', 2023),
+    (3, '2023-09-03', 'Saturday', 'September', 'Q3', 2023);
+```
+
+**Sample Data for the Fact Table:**
+
+```sql
+-- Insert data into SalesFact
+INSERT INTO SalesFact (sales_id, book_id, customer_id, date_id, quantity_sold, total_sales_amount)
+VALUES
+    (1, 1, 101, 1, 2, 24.99),
+    (2, 2, 102, 2, 3, 34.99),
+    (3, 3, 103, 3, 1, 14.99);
+```
+
+Please adjust the sample data according to your specific requirements and add more records as needed. In practice, you would typically load data from external sources, automate data integration, and handle larger datasets.
+
+**Data Mart 1: Sales Analysis Data Mart**
+
+*Business Case:*
+The Sales Analysis Data Mart focuses on providing insights into the sales performance of books. It enables the sales and marketing teams to monitor sales trends, evaluate book performance, and make data-driven decisions to optimize sales strategies.
+
+*Tables Included:*
+1. `SalesFact`: Contains sales data, including the quantity sold and total sales amount.
+2. `BookDim`: Provides details about books, including titles, authors, genres, and publishers.
+3. `CustomerDim`: Contains customer information.
+4. `DateDim`: Includes date-related information.
+
+*Queries and Reports:*
+- Monthly and quarterly sales reports.
+- Bestselling books by month or quarter.
+- Customer purchase history and segmentation.
+- Sales performance by author, genre, or publisher.
+- Trend analysis to identify seasonal variations in sales.
+
+**Data Mart 2: Customer Insights Data Mart**
+
+*Business Case:*
+The Customer Insights Data Mart focuses on understanding customer behavior and preferences. It enables the marketing and customer service teams to tailor their strategies, improve customer satisfaction, and increase customer retention.
+
+*Tables Included:*
+1. `SalesFact`: Contains sales data, including the quantity sold and total sales amount.
+2. `CustomerDim`: Contains customer information.
+3. `BookDim`: Provides details about books, including titles, authors, genres, and publishers.
+4. `DateDim`: Includes date-related information.
+
+*Queries and Reports:*
+- Customer segmentation based on purchase history.
+- Customer lifetime value (CLV) analysis.
+- Customer churn analysis to identify at-risk customers.
+- Recommendations for books based on customer preferences.
+- Personalized marketing campaigns targeting specific customer segments.
+
+These Data Marts serve as focused subsets of the larger data warehouse, designed to meet the specific needs of different business units within the book store. They allow teams to extract meaningful insights and make informed decisions in their respective areas of operation.
+
+Creating a Data Mart typically involves designing new tables, views, or indexes based on the specific business requirements of the mart. Below, I'll provide a simplified SQL code example for creating the two Data Marts mentioned earlier: the Sales Analysis Data Mart and the Customer Insights Data Mart. Please note that in a real-world scenario, Data Mart development would be more extensive and tailored to specific business needs.
+
+**Sales Analysis Data Mart SQL Code:**
+
+```sql
+-- Create Sales Analysis Data Mart
+-- This Data Mart focuses on sales analysis.
+
+-- Create Sales Analysis Fact Table
+CREATE TABLE SalesAnalysisFact AS
+SELECT
+    S.date_id,
+    S.book_id,
+    B.author_id,
+    B.genre_id,
+    B.publisher_id,
+    D.year AS sale_year,
+    D.month AS sale_month,
+    SUM(S.quantity_sold) AS total_quantity_sold,
+    SUM(S.total_sales_amount) AS total_sales_amount
+FROM
+    SalesFact S
+JOIN
+    BookDim B ON S.book_id = B.book_id
+JOIN
+    DateDim D ON S.date_id = D.date_id
+GROUP BY
+    S.date_id, S.book_id, B.author_id, B.genre_id, B.publisher_id, D.year, D.month;
+
+-- Create views and indexes as needed for sales analysis queries.
+
+-- Create Customer Segmentation Table (Sample)
+CREATE TABLE CustomerSegmentation AS
+SELECT
+    C.customer_id,
+    CASE
+        WHEN CA.total_sales_amount >= 1000 THEN 'High Value'
+        WHEN CA.total_sales_amount >= 500 THEN 'Medium Value'
+        ELSE 'Low Value'
+    END AS customer_segment
+FROM
+    CustomerDim C
+JOIN
+    (
+        SELECT
+            customer_id,
+            SUM(total_sales_amount) AS total_sales_amount
+        FROM
+            SalesAnalysisFact
+        GROUP BY
+            customer_id
+    ) CA ON C.customer_id = CA.customer_id;
+
+-- Additional views and reports can be created as needed for sales analysis.
+
+-- Create indexes for performance optimization.
+
+-- Create stored procedures for generating reports.
+
+```
+
+**Customer Insights Data Mart SQL Code:**
+
+```sql
+-- Create Customer Insights Data Mart
+-- This Data Mart focuses on customer insights.
+
+-- Create Customer Behavior Fact Table
+CREATE TABLE CustomerBehaviorFact AS
+SELECT
+    C.customer_id,
+    B.genre_id,
+    D.year AS sale_year,
+    D.month AS sale_month,
+    SUM(S.quantity_sold) AS total_quantity_sold,
+    SUM(S.total_sales_amount) AS total_sales_amount
+FROM
+    SalesFact S
+JOIN
+    CustomerDim C ON S.customer_id = C.customer_id
+JOIN
+    BookDim B ON S.book_id = B.book_id
+JOIN
+    DateDim D ON S.date_id = D.date_id
+GROUP BY
+    C.customer_id, B.genre_id, D.year, D.month;
+
+-- Create views and indexes as needed for customer insights queries.
+
+-- Create Customer Segmentation Table (Sample)
+CREATE TABLE CustomerSegmentation AS
+SELECT
+    customer_id,
+    CASE
+        WHEN total_quantity_sold >= 50 THEN 'Frequent Buyer'
+        WHEN total_quantity_sold >= 20 THEN 'Regular Buyer'
+        ELSE 'Occasional Buyer'
+    END AS customer_segment
+FROM
+    CustomerBehaviorFact;
+
+-- Additional views and reports can be created as needed for customer insights.
+
+-- Create indexes for performance optimization.
+
+-- Create stored procedures for generating reports.
+
+```
+
+These SQL code examples are simplified and serve as a starting point for creating Data Marts. In practice, you would tailor the Data Mart design and SQL code to match your specific business requirements, including the creation of appropriate views, indexes, and stored procedures for generating reports and insights.
