@@ -4,6 +4,28 @@ Creating a full-fledged Enterprise Data Warehouse (EDW) and Data Mart for a book
 
 Please note that in a real-world scenario, the design and structure of the data warehouse would be more comprehensive and tailored to the specific needs of the business.
 
+Using a star schema instead of a snowflake schema for a data warehouse in a book store context can be a more suitable choice for several reasons:
+
+1. **Simplicity and Ease of Use**: Star schemas are simpler and easier to understand for business users, analysts, and report developers. They involve fewer tables and joins, making it more straightforward to write and maintain SQL queries. This simplicity can lead to increased productivity among users who need to access and analyze data.
+
+2. **Query Performance**: Star schemas generally offer better query performance compared to snowflake schemas. With fewer joins involved, queries can be executed more quickly, which is crucial for analytical and reporting purposes. This faster query performance allows for quicker access to insights and reports.
+
+3. **Agility and Flexibility**: Star schemas are more agile and flexible when it comes to adapting to changing business needs. If you need to add new dimensions or modify existing ones, changes can be made to the schema with minimal impact on other parts of the system. This agility is beneficial in a dynamic business environment.
+
+4. **Tool Compatibility**: Many Business Intelligence (BI) and reporting tools are optimized for star schemas. Using a star schema can lead to better compatibility with these tools, streamlining the reporting and analytics process. It can also reduce the complexity of setting up connections between tools and the data warehouse.
+
+5. **Performance Optimization**: Star schemas allow for easier implementation of performance optimization techniques, such as indexing and materialized views. These optimizations can further enhance query performance and responsiveness.
+
+6. **User Adoption**: Star schemas are generally more intuitive for end-users, resulting in quicker user adoption. When users find it easier to access and work with data, they are more likely to embrace data-driven decision-making practices.
+
+7. **Scalability**: Star schemas are often more scalable as data volumes grow. They can handle large amounts of data without significant degradation in query performance, making them suitable for a growing book store's data needs.
+
+8. **Reduced Complexity**: Snowflake schemas can introduce unnecessary complexity by normalizing data into multiple related tables. While normalization has its benefits in transactional databases, it can add complexity and potentially hinder performance in a data warehousing context.
+
+However, it's important to note that the choice between a star schema and a snowflake schema should ultimately align with the specific business requirements, data modeling standards, and preferences of your organization. In some cases, a snowflake schema may be more appropriate, especially when dealing with highly normalized data or strict data integrity requirements.
+
+Before making a decision, it's essential to carefully analyze your data and consider the reporting and analytical needs of your book store to determine the most suitable schema design for your data warehouse.
+
 ### Entity-Relationship Diagram (ERD):
 
 ![drawSQL-sql-export-2023-09-06](https://github.com/ikhsannur1996/sample-datawarehouse/assets/32507742/127cc5a5-f05e-4301-9996-e2f71e86952d)
