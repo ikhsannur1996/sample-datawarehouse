@@ -2,8 +2,6 @@
 
 Creating a full-fledged Enterprise Data Warehouse (EDW) and Data Mart for a book store is a complex task that typically involves a significant amount of planning and design. In this text-based format, I can provide you with a simplified example of an Entity-Relationship Diagram (ERD) for a Data Warehouse and Data Mart in a book store scenario, along with SQL code and sample data for one fact table and three dimension tables.
 
-Please note that in a real-world scenario, the design and structure of the data warehouse would be more comprehensive and tailored to the specific needs of the business.
-
 Using a star schema instead of a snowflake schema for a data warehouse in a book store context can be a more suitable choice for several reasons:
 
 1. **Simplicity and Ease of Use**: Star schemas are simpler and easier to understand for business users, analysts, and report developers. They involve fewer tables and joins, making it more straightforward to write and maintain SQL queries. This simplicity can lead to increased productivity among users who need to access and analyze data.
@@ -29,6 +27,8 @@ Before making a decision, it's essential to carefully analyze your data and cons
 ### Entity-Relationship Diagram (ERD):
 
 ![drawSQL-sql-export-2023-09-06](https://github.com/ikhsannur1996/sample-datawarehouse/assets/32507742/127cc5a5-f05e-4301-9996-e2f71e86952d)
+
+Please note that in a real-world scenario, the design and structure of the data warehouse would be more comprehensive and tailored to the specific needs of the business.
 
 Here's a simplified ERD for the Data Warehouse and Data Mart:
 
