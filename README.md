@@ -1,4 +1,4 @@
-## Enterprise Data Warehouse (EDW)
+## Enterprise Data Warehouse (EDW) - Star Schema
 
 Creating a full-fledged Enterprise Data Warehouse (EDW) and Data Mart for a book store is a complex task that typically involves a significant amount of planning and design. In this text-based format, I can provide you with a simplified example of an Entity-Relationship Diagram (ERD) for a Data Warehouse and Data Mart in a book store scenario, along with SQL code and sample data for one fact table and three dimension tables.
 
@@ -375,3 +375,6 @@ SELECT * FROM public.monthlysalestrends;
 - **Error Handling:** The use of `CREATE TABLE IF NOT EXISTS` ensures that the code will not produce errors if the destination table already exists.
 
 **Note:** Be cautious when using this code in production environments, as it can potentially overwrite or duplicate data. Always verify the database context and table names before executing the SQL statement.
+
+
+## Enterprise Data Warehouse (EDW) - Snowflake Schema
