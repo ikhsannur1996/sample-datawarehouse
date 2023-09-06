@@ -4,7 +4,7 @@ Please note that in a real-world scenario, the design and structure of the data 
 
 ### Entity-Relationship Diagram (ERD):
 
-![Uploading drawSQL-sql-export-2023-09-06.png…]()
+![drawSQL-sql-export-2023-09-06](https://github.com/ikhsannur1996/sample-datawarehouse/assets/32507742/127cc5a5-f05e-4301-9996-e2f71e86952d)
 
 Here's a simplified ERD for the Data Warehouse and Data Mart:
 
