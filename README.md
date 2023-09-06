@@ -4,6 +4,8 @@ Please note that in a real-world scenario, the design and structure of the data 
 
 ### Entity-Relationship Diagram (ERD):
 
+![Uploading drawSQL-sql-export-2023-09-06.png…]()
+
 Here's a simplified ERD for the Data Warehouse and Data Mart:
 
 1. Fact Table:
