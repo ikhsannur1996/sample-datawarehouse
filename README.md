@@ -227,7 +227,7 @@ VALUES
 
 These INSERT statements will populate the tables with the sample data provided earlier. You can continue to add more records to these tables as needed for your testing or development purposes.
 
-Certainly! Here are two sample Data Marts that can be created from the Data Warehouse described above, along with their respective business cases:
+### Sample Datamart:
 
 **Data Mart 1: Sales Analysis Data Mart**
 
@@ -535,7 +535,7 @@ CREATE TABLE SalesFact (
 );
 ```
 
-**Sample Data:**
+### Sample Data:
 
 Below is some sample data for one fact table record and three dimension tables:
 
@@ -574,9 +574,7 @@ Below is some sample data for one fact table record and three dimension tables:
 | customer_id | customer_name    | email                  | phone        | address                   |
 | ----------- | ---------------- | ---------------------- | ------------ | -------------------------- |
 | 101         | John Doe         | john.doe@example.com   | 123-456-7890 | 123 Main St, Anytown, USA |
-| 102         | Jane Smith       | jane
-
-.smith@example.com | 987-654-3210 | 456 Elm St, Othertown, USA |
+| 102         | Jane Smith       | jane.smith@example.com | 987-654-3210 | 456 Elm St, Othertown, USA |
 | 103         | Bob Johnson      | bob.j@example.com      | 555-123-4567 | 789 Oak St, Anothercity, USA |
 
 **DateDim Table Sample Data:**
@@ -653,6 +651,8 @@ VALUES
 ```
 
 Please adjust the sample data according to your specific requirements and add more records as needed. In practice, you would typically load data from external sources, automate data integration, and handle larger datasets.
+
+### Sample Datamart:
 
 **Data Mart 1: Sales Analysis Data Mart**
 
