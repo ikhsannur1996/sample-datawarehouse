@@ -1,3 +1,5 @@
+#### Enterprise Data Warehouse (EDW)
+
 Creating a full-fledged Enterprise Data Warehouse (EDW) and Data Mart for a book store is a complex task that typically involves a significant amount of planning and design. In this text-based format, I can provide you with a simplified example of an Entity-Relationship Diagram (ERD) for a Data Warehouse and Data Mart in a book store scenario, along with SQL code and sample data for one fact table and three dimension tables.
 
 Please note that in a real-world scenario, the design and structure of the data warehouse would be more comprehensive and tailored to the specific needs of the business.
