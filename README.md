@@ -164,9 +164,32 @@ VALUES
 
 ```sql
 -- Insert sample data into SalesFact table
-INSERT INTO SalesFact (sales_id, book_id, customer_id, date_id, quantity_sold, total_sales_amount)
+INSERT INTO SalesFact (book_id, customer_id, date_id, quantity_sold, total_sales_amount)
 VALUES
-    (1, 1, 101, 1, 2, 24.99);
+    (1, 101, 1, 2, 24.99),
+    (2, 102, 2, 3, 34.99),
+    (3, 103, 3, 1, 14.99),
+    (1, 102, 4, 2, 24.99),
+    (2, 101, 5, 4, 49.99),
+    (3, 104, 6, 3, 34.99),
+    (1, 103, 7, 2, 24.99),
+    (2, 104, 8, 3, 34.99),
+    (3, 105, 9, 1, 14.99),
+    (1, 105, 10, 2, 24.99),
+    (2, 101, 11, 4, 49.99),
+    (3, 102, 12, 3, 34.99),
+    (1, 104, 13, 2, 24.99),
+    (2, 105, 14, 3, 34.99),
+    (3, 101, 15, 1, 14.99),
+    (1, 102, 16, 2, 24.99),
+    (2, 103, 17, 4, 49.99),
+    (3, 104, 18, 3, 34.99),
+    (1, 105, 19, 2, 24.99),
+    (2, 101, 20, 3, 34.99);
+
+-- Insert additional data into dimension tables if needed
+-- For example, add more books, customers, and dates to the dimension tables
+
 ```
 
 These INSERT statements will populate the tables with the sample data provided earlier. You can continue to add more records to these tables as needed for your testing or development purposes.
