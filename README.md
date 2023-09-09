@@ -410,7 +410,7 @@ JOIN
    -- Dicing by year and genre
    SELECT *
    FROM DataMartCube
-   WHERE year = 2023 AND genre = 'Fiction';
+   WHERE year = 2023 AND month = 'September';
    ```
 
 3. **Drilling Up and Down:**
