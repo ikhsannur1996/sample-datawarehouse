@@ -5,6 +5,9 @@ Enterprise Data Warehouses (EDWs) and Data Marts are foundational components of 
 **Enterprise Data Warehouse (EDW) - Star Schema (Tested in Lab):**
 In this section, we delve into the concept of an Enterprise Data Warehouse (EDW) designed using a star schema, a well-established and tested approach for organizing data in a data warehouse. The star schema consists of a central fact table surrounded by dimension tables, offering simplicity, query performance, and ease of use. This section provides insights into the benefits, practical implementation, and use cases of a star schema within an EDW, backed by actual testing and experimentation.
 
+**Data Mart - Cube Data Mart:**
+A Data Mart is a specialized subset of an Enterprise Data Warehouse (EDW) that focuses on a specific business area or department's data needs. In the context of a book store, a Cube Data Mart is a type of Data Mart that is particularly useful for multidimensional analysis and reporting. This section provides an overview of the Cube Data Mart concept, its design considerations, and its applications in the book store context.
+
 **Enterprise Data Warehouse (EDW) - Snowflake Schema (Untested in Lab):**
 In this section, we explore the concept of an Enterprise Data Warehouse (EDW) designed using a snowflake schema, although it has not yet undergone testing by the author. The snowflake schema is characterized by its more normalized structure, potentially reducing data redundancy and offering advantages in terms of data integrity and adaptability to changes. This section examines the theoretical benefits and considerations of using a snowflake schema within an EDW, while acknowledging that practical testing results are pending.
 
