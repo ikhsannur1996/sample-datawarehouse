@@ -360,6 +360,96 @@ ORDER BY
 These SQL views are just starting points for your Data Marts. Depending on your specific business requirements, you may need to create additional views or customize the existing ones to provide the necessary data for your reports and analyses. Additionally, you can use these views as data sources for your BI tools or reporting applications to visualize and interact with the data.
 
 
+## Cube Data Mart
+To create a Data Mart Cube and perform cube operations (Slicing, Dicing, Drilling up and down, Pivoting, Rolling Up) using the tables you've provided, you would typically use a database management system that supports Online Analytical Processing (OLAP) operations. Below are SQL queries for each of these operations:
+
+**Create Data Mart Cube:**
+
+To create a Data Mart Cube, you can create a view that aggregates the data from the fact table (SalesFact) and join it with the dimension tables (BookDim, CustomerDim, DateDim) to create a multidimensional view of the data.
+
+```sql
+-- Create a Data Mart Cube View
+CREATE VIEW DataMartCube AS
+SELECT
+    S.sales_id,
+    B.book_title,
+    C.customer_name,
+    D.year,
+    D.month,
+    S.quantity_sold,
+    S.total_sales_amount
+FROM
+    SalesFact S
+JOIN
+    BookDim B ON S.book_id = B.book_id
+JOIN
+    CustomerDim C ON S.customer_id = C.customer_id
+JOIN
+    DateDim D ON S.date_id = D.date_id;
+```
+
+**Cube Operations:**
+
+1. **Slicing:**
+   - Slicing involves selecting a single value along one dimension while keeping all other dimensions intact.
+
+   ```sql
+   -- Slicing by year
+   SELECT *
+   FROM DataMartCube
+   WHERE year = 2023;
+   ```
+
+2. **Dicing:**
+   - Dicing involves selecting specific values along multiple dimensions.
+
+   ```sql
+   -- Dicing by year and genre
+   SELECT *
+   FROM DataMartCube
+   WHERE year = 2023 AND genre = 'Fiction';
+   ```
+
+3. **Drilling Up and Down:**
+   - Drilling up involves moving from a more detailed level to a higher level of aggregation.
+   - Drilling down involves moving from a higher level of aggregation to a more detailed level.
+
+   ```sql
+   -- Drilling up from month to year
+   SELECT year, SUM(total_sales_amount)
+   FROM DataMartCube
+   GROUP BY year;
+
+   -- Drilling down from year to month
+   SELECT year, month, SUM(total_sales_amount)
+   FROM DataMartCube
+   GROUP BY year, month;
+   ```
+
+4. **Pivoting:**
+   - Pivoting involves changing the orientation of the data, typically converting rows into columns.
+
+   ```sql
+   -- Pivoting by month and sum of sales
+   SELECT month,
+          SUM(CASE WHEN year = 2022 THEN total_sales_amount ELSE 0 END) AS "2022_Sales",
+          SUM(CASE WHEN year = 2023 THEN total_sales_amount ELSE 0 END) AS "2023_Sales"
+   FROM DataMartCube
+   GROUP BY month;
+   ```
+
+5. **Rolling Up:**
+   - Rolling up involves aggregating data from a lower level to a higher level within a dimension.
+
+   ```sql
+   -- Rolling up from day to month
+   SELECT year, month, SUM(total_sales_amount)
+   FROM DataMartCube
+   GROUP BY year, month;
+   ```
+
+These SQL queries demonstrate cube operations on the Data Mart Cube. Keep in mind that in a real-world scenario, you would typically use OLAP tools or OLAP functions provided by your database management system for more efficient and optimized cube operations.
+
 
 ## Enterprise Data Warehouse (EDW) - Snowflake Schema (Untested in Lab)
 
